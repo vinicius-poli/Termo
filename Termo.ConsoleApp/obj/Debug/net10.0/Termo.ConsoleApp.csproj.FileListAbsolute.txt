@@ -1,0 +1,15 @@
+C:\Users\Vinícius\Documents\Academia do Programador\Termo\Termo.ConsoleApp\bin\Debug\net10.0\Termo.ConsoleApp.exe
+C:\Users\Vinícius\Documents\Academia do Programador\Termo\Termo.ConsoleApp\bin\Debug\net10.0\Termo.ConsoleApp.deps.json
+C:\Users\Vinícius\Documents\Academia do Programador\Termo\Termo.ConsoleApp\bin\Debug\net10.0\Termo.ConsoleApp.runtimeconfig.json
+C:\Users\Vinícius\Documents\Academia do Programador\Termo\Termo.ConsoleApp\bin\Debug\net10.0\Termo.ConsoleApp.dll
+C:\Users\Vinícius\Documents\Academia do Programador\Termo\Termo.ConsoleApp\bin\Debug\net10.0\Termo.ConsoleApp.pdb
+C:\Users\Vinícius\Documents\Academia do Programador\Termo\Termo.ConsoleApp\obj\Debug\net10.0\Termo.ConsoleApp.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\Vinícius\Documents\Academia do Programador\Termo\Termo.ConsoleApp\obj\Debug\net10.0\Termo.ConsoleApp.AssemblyInfoInputs.cache
+C:\Users\Vinícius\Documents\Academia do Programador\Termo\Termo.ConsoleApp\obj\Debug\net10.0\Termo.ConsoleApp.AssemblyInfo.cs
+C:\Users\Vinícius\Documents\Academia do Programador\Termo\Termo.ConsoleApp\obj\Debug\net10.0\Termo.ConsoleApp.csproj.CoreCompileInputs.cache
+C:\Users\Vinícius\Documents\Academia do Programador\Termo\Termo.ConsoleApp\obj\Debug\net10.0\Termo.ConsoleApp.sourcelink.json
+C:\Users\Vinícius\Documents\Academia do Programador\Termo\Termo.ConsoleApp\obj\Debug\net10.0\Termo.ConsoleApp.dll
+C:\Users\Vinícius\Documents\Academia do Programador\Termo\Termo.ConsoleApp\obj\Debug\net10.0\refint\Termo.ConsoleApp.dll
+C:\Users\Vinícius\Documents\Academia do Programador\Termo\Termo.ConsoleApp\obj\Debug\net10.0\Termo.ConsoleApp.pdb
+C:\Users\Vinícius\Documents\Academia do Programador\Termo\Termo.ConsoleApp\obj\Debug\net10.0\Termo.ConsoleApp.genruntimeconfig.cache
+C:\Users\Vinícius\Documents\Academia do Programador\Termo\Termo.ConsoleApp\obj\Debug\net10.0\ref\Termo.ConsoleApp.dll
