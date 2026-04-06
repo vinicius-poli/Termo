@@ -3,22 +3,31 @@
 using System.Data.Common;
 using System.Security.Cryptography;
 
+
 class Program
 {
     static void Main(string[] args)
     {
+        Console.OutputEncoding = System.Text.Encoding.UTF8; //Código para exibir o caracter quadrado
         string[] palavras = [
-            "IDEIA"
+            "IDEIA",
+            "TREVO",
+            "PLANO",
+            "MUNDO",
+            "FESTA"
         ];
 
         int indiceAleatorio = RandomNumberGenerator.GetInt32(palavras.Length);
 
         string palavraAleatoria = palavras[indiceAleatorio];        
-
+        
+        Console.WriteLine("-----------------------");
+        Console.WriteLine("        TERMO");
+        Console.WriteLine("-----------------------");
         Console.Write("Digite uma palavra: ");
         string? palavraEscolhida = Console.ReadLine();        
                    
-        Console.WriteLine(palavraAleatoria);
+        Console.WriteLine("\u25A1\u25A1\u25A1\u25A1\u25A1");
                         
         for (int contador = 0; contador < palavraAleatoria.Length; contador++)
         {   
