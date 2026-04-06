@@ -51,7 +51,10 @@ class Program
 
             numeroDeTentativas++;
 
-            if (palavraEscolhida == palavraAleatoria)
+            string palavraChuteLimpa = RemoverAcentos(palavraEscolhida.ToUpper());
+            string palavraSecretaLimpa = RemoverAcentos(palavraAleatoria);
+
+            if (palavraChuteLimpa == palavraSecretaLimpa)
             {
                 ColorirTexto("azul");
                 Console.WriteLine("---------------");
@@ -91,10 +94,13 @@ class Program
     }
     static void ImpressaoDasLetras(string palavraAleatoria, string palavraEscolhida)
     {
+        string palavraChuteLimpa = RemoverAcentos(palavraEscolhida.ToUpper());
+        string palavraSecretaLimpa = RemoverAcentos(palavraAleatoria);
+
         for (int contador = 0; contador < palavraAleatoria.Length; contador++)
             {   
-                char letraAtual = palavraAleatoria[contador];
-                char letraChute = palavraEscolhida[contador];
+                char letraAtual = palavraSecretaLimpa[contador];
+                char letraChute = palavraChuteLimpa[contador];
 
                 if (letraChute == letraAtual)
                 {
@@ -105,7 +111,7 @@ class Program
                 {          
                     for (int j = 0; j < palavraAleatoria.Length; j++)               
                     { 
-                        letraAtual = palavraAleatoria[j]; 
+                        letraAtual = palavraSecretaLimpa[j]; 
                         
                         if (letraAtual == letraChute && contador != j)
                         {                          
@@ -150,6 +156,22 @@ class Program
         {
             Console.ForegroundColor = ConsoleColor.DarkCyan;
         }
-    }
+    }   
+    static string RemoverAcentos(string acento)
+    {
+        string formaNormalizada = acento.Normalize(System.Text.NormalizationForm.FormD);
+        System.Text.StringBuilder sb = new System.Text.StringBuilder();
+
+        foreach (char c in formaNormalizada)
+        {
+            System.Globalization.UnicodeCategory tipoChar = System.Globalization.CharUnicodeInfo.GetUnicodeCategory(c);
+            if (tipoChar != System.Globalization.UnicodeCategory.NonSpacingMark)
+            {
+                sb.Append(c);
+            }
+        }
+
+        return sb.ToString().Normalize(System.Text.NormalizationForm.FormC);
+    } 
 }
 
