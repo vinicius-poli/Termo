@@ -16,7 +16,7 @@ Ao jogadore é solicitado inserir a tentiva de palavra através do console e o p
 
 - **Letra Amarela:** A letra existe mas está na posição errada em relação a palavra secreta;
 
--**Letra Vermelha:** A letra não existe na palavra secreta;
+- **Letra Vermelha:** A letra não existe na palavra secreta;
 
 Se o jogador acertar a palavra secreta em até 5 tentativas, o jogador vence, após a quinta tentativa o jogador é derrotado.
 
