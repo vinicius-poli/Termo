@@ -15,6 +15,7 @@ class Program
     }
     static void ExibirCabecalho()
     {
+        Console.Clear();
         Console.OutputEncoding = System.Text.Encoding.UTF8; //Código para exibir o caracter quadrado
         Console.WriteLine("-----------------------");
         Console.WriteLine("        TERMO");
