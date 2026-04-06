@@ -1,5 +1,6 @@
 ﻿﻿namespace Termo.ConsoleApp;
 
+using System.ComponentModel;
 using System.Data.Common;
 using System.Security.Cryptography;
 
@@ -19,55 +20,89 @@ class Program
 
         int indiceAleatorio = RandomNumberGenerator.GetInt32(palavras.Length);
 
-        string palavraAleatoria = palavras[indiceAleatorio];        
-        
+        string palavraAleatoria = palavras[indiceAleatorio];
+
+        bool jogadorAcertouPalavra = false;
+
+        int numeroDeTentativas = 0;
+
         Console.WriteLine("-----------------------");
         Console.WriteLine("        TERMO");
         Console.WriteLine("-----------------------");
-        Console.Write("Digite uma palavra: ");
-        string? palavraEscolhida = Console.ReadLine();        
-                   
-        Console.WriteLine("\u25A1\u25A1\u25A1\u25A1\u25A1");
-                        
-        for (int contador = 0; contador < palavraAleatoria.Length; contador++)
-        {   
-            char letraAtual = palavraAleatoria[contador];
-            char letraChute = palavraEscolhida[contador];
+        Console.WriteLine("\u25A1\u25A1\u25A1\u25A1\u25A1"); //QUADRADOS
+        
+        while (jogadorAcertouPalavra == false)
+        {                        
+            Console.Write("Digite uma palavra: ");
+            string? palavraEscolhida = Console.ReadLine();
 
-            if (letraChute == letraAtual)
+            if (string.IsNullOrWhiteSpace(palavraEscolhida) ||
+            palavraEscolhida.Length !=5 ||
+            !palavraEscolhida.All(c => char.IsLetter(c)))
             {
-                Console.ForegroundColor = ConsoleColor.DarkGreen;
+                Console.WriteLine("Digite uma palavra com 5 letras!");
+                continue;
+            }   
+
+            palavraEscolhida = palavraEscolhida.ToUpper();               
+
+            for (int contador = 0; contador < palavraAleatoria.Length; contador++)
+            {   
+                char letraAtual = palavraAleatoria[contador];
+                char letraChute = palavraEscolhida[contador];
+
+                if (letraChute == letraAtual)
+                {
+                    Console.ForegroundColor = ConsoleColor.DarkGreen;
+                }
+
+                else
+                {          
+                    for (int j = 0; j < palavraAleatoria.Length; j++)               
+                    { 
+                        letraAtual = palavraAleatoria[j]; 
+                        
+                        if (letraAtual == letraChute && contador != j)
+                        {                          
+                            Console.ForegroundColor = ConsoleColor.DarkYellow;
+                            break;                       
+                        }                        
+                        
+                        else if (letraAtual != letraChute)
+                        {
+                            Console.ForegroundColor = ConsoleColor.DarkRed;                    
+                        }
+                    }                                 
+                }
+                Console.Write(letraChute);
+                Console.ForegroundColor = ConsoleColor.White;    
+                                                
             }
 
-            else
-            {          
-                for (int j = 0; j < palavraAleatoria.Length; j++)               
-                { 
-                    letraAtual = palavraAleatoria[j]; 
-                    
-                    if (letraAtual == letraChute && contador != j)
-                    {                          
-                        Console.ForegroundColor = ConsoleColor.DarkYellow;
-                        break;                       
-                    }                        
-                    
-                    else if (letraAtual != letraChute)
-                    {
-                        Console.ForegroundColor = ConsoleColor.DarkRed;                    
-                    }
-                }                                 
+            Console.WriteLine();
+
+            numeroDeTentativas++;
+
+            if (palavraEscolhida == palavraAleatoria)
+            {
+                Console.ForegroundColor = ConsoleColor.DarkCyan;
+                Console.WriteLine("---------------");
+                Console.WriteLine("Você venceu!!");
+                Console.WriteLine("---------------");
+                Console.ForegroundColor = ConsoleColor.White;
+                jogadorAcertouPalavra = true;
             }
-            Console.Write(letraChute);
-            Console.ForegroundColor = ConsoleColor.White;    
-                                            
+
+            if (numeroDeTentativas == 5)
+            {
+                Console.ForegroundColor = ConsoleColor.DarkMagenta;
+                Console.WriteLine("---------------");
+                Console.WriteLine("Você perdeu!!");
+                Console.WriteLine("---------------");
+                Console.ForegroundColor = ConsoleColor.White;
+                break;
+            }            
         }
-        //Console.WriteLine(letrasSeparadasPalavraEscolhida);
+        Console.ReadLine();  
     }
 }
-
-
-// for escolhida
-    //for aleatoria
-    // if Escolhida[x] = Escolhida[x] Letra Verde
-    // if Escolhida[x] = Escolhlida[não x] Letra Amarela
-    // if Escolhida[x] != Escolhlida[x] Letra Vermelha
