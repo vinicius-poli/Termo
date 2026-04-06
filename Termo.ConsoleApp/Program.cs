@@ -8,8 +8,21 @@ using System.Security.Cryptography;
 class Program
 {
     static void Main(string[] args)
+    {           
+        ExibirCabecalho();
+
+        ExecutarTentativas();           
+    }
+    static void ExibirCabecalho()
     {
         Console.OutputEncoding = System.Text.Encoding.UTF8; //Código para exibir o caracter quadrado
+        Console.WriteLine("-----------------------");
+        Console.WriteLine("        TERMO");
+        Console.WriteLine("-----------------------");
+        Console.WriteLine("\u25A1\u25A1\u25A1\u25A1\u25A1"); //QUADRADOS
+    }
+    static string SortearPalavraAleatoria()
+    {
         string[] palavras = [
             "IDEIA",
             "TREVO",
@@ -22,38 +35,70 @@ class Program
 
         string palavraAleatoria = palavras[indiceAleatorio];
 
-        bool jogadorAcertouPalavra = false;
-
+        return palavraAleatoria;
+    }
+    static void ExecutarTentativas()
+    {
+        bool jogoTerminou = false;
         int numeroDeTentativas = 0;
+        string palavraAleatoria = SortearPalavraAleatoria();
 
-        Console.WriteLine("-----------------------");
-        Console.WriteLine("        TERMO");
-        Console.WriteLine("-----------------------");
-        Console.WriteLine("\u25A1\u25A1\u25A1\u25A1\u25A1"); //QUADRADOS
-        
-        while (jogadorAcertouPalavra == false)
-        {                        
-            Console.Write("Digite uma palavra: ");
+        while (jogoTerminou == false)
+        {   
+            string palavraEscolhida = InserirPalavra();                   
+
+            ImpressaoDasLetras(palavraAleatoria, palavraEscolhida);            
+
+            numeroDeTentativas++;
+
+            if (palavraEscolhida == palavraAleatoria)
+            {
+                ColorirTexto("azul");
+                Console.WriteLine("---------------");
+                Console.WriteLine("Você venceu!!");
+                Console.WriteLine("---------------");
+                ColorirTexto("branco");
+                break;                
+            }
+
+            if (numeroDeTentativas == 5)
+            {
+                ColorirTexto("lilas");
+                Console.WriteLine("---------------");
+                Console.WriteLine("Você perdeu!!");
+                Console.WriteLine("---------------");
+                ColorirTexto("branco");
+                jogoTerminou = true;
+            }            
+        }
+        Console.ReadLine();  
+    }
+    static string InserirPalavra()
+    {
+        Console.Write("Digite uma palavra: ");
             string? palavraEscolhida = Console.ReadLine();
 
-            if (string.IsNullOrWhiteSpace(palavraEscolhida) ||
+            while (string.IsNullOrWhiteSpace(palavraEscolhida) ||
             palavraEscolhida.Length !=5 ||
             !palavraEscolhida.All(c => char.IsLetter(c)))
             {
                 Console.WriteLine("Digite uma palavra com 5 letras!");
                 continue;
-            }   
+            }
+            palavraEscolhida = palavraEscolhida.ToUpper();
 
-            palavraEscolhida = palavraEscolhida.ToUpper();               
-
-            for (int contador = 0; contador < palavraAleatoria.Length; contador++)
+            return palavraEscolhida;   
+    }
+    static void ImpressaoDasLetras(string palavraAleatoria, string palavraEscolhida)
+    {
+        for (int contador = 0; contador < palavraAleatoria.Length; contador++)
             {   
                 char letraAtual = palavraAleatoria[contador];
                 char letraChute = palavraEscolhida[contador];
 
                 if (letraChute == letraAtual)
                 {
-                    Console.ForegroundColor = ConsoleColor.DarkGreen;
+                    ColorirTexto("verde");
                 }
 
                 else
@@ -64,45 +109,47 @@ class Program
                         
                         if (letraAtual == letraChute && contador != j)
                         {                          
-                            Console.ForegroundColor = ConsoleColor.DarkYellow;
+                            ColorirTexto("amarelo");
                             break;                       
                         }                        
                         
                         else if (letraAtual != letraChute)
                         {
-                            Console.ForegroundColor = ConsoleColor.DarkRed;                    
+                            ColorirTexto("vermelho");                    
                         }
                     }                                 
                 }
                 Console.Write(letraChute);
-                Console.ForegroundColor = ConsoleColor.White;    
-                                                
+                ColorirTexto("branco");                                                
             }
-
             Console.WriteLine();
-
-            numeroDeTentativas++;
-
-            if (palavraEscolhida == palavraAleatoria)
-            {
-                Console.ForegroundColor = ConsoleColor.DarkCyan;
-                Console.WriteLine("---------------");
-                Console.WriteLine("Você venceu!!");
-                Console.WriteLine("---------------");
-                Console.ForegroundColor = ConsoleColor.White;
-                jogadorAcertouPalavra = true;
-            }
-
-            if (numeroDeTentativas == 5)
-            {
-                Console.ForegroundColor = ConsoleColor.DarkMagenta;
-                Console.WriteLine("---------------");
-                Console.WriteLine("Você perdeu!!");
-                Console.WriteLine("---------------");
-                Console.ForegroundColor = ConsoleColor.White;
-                break;
-            }            
+    }
+    static void ColorirTexto(string cor = "branco")
+    {
+        if (cor == "branco")
+        {
+            Console.ForegroundColor = ConsoleColor.White;
         }
-        Console.ReadLine();  
+        else if (cor == "verde")
+        {
+            Console.ForegroundColor = ConsoleColor.DarkGreen;
+        }
+        else if (cor == "amarelo")
+        {
+            Console.ForegroundColor = ConsoleColor.DarkYellow;
+        }
+        else if (cor == "vermelho")
+        {
+            Console.ForegroundColor = ConsoleColor.DarkRed;
+        }
+        else if (cor == "lilas")
+        {
+            Console.ForegroundColor = ConsoleColor.DarkMagenta;
+        }
+        else if (cor == "azul")
+        {
+            Console.ForegroundColor = ConsoleColor.DarkCyan;
+        }
     }
 }
+
