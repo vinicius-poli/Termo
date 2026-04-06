@@ -75,19 +75,19 @@ class Program
     }
     static string InserirPalavra()
     {
-        Console.Write("Digite uma palavra: ");
-            string? palavraEscolhida = Console.ReadLine();
+        Console.Write("Digite uma palavra com 5 letras: ");
+        string? palavraEscolhida = Console.ReadLine();
 
-            while (string.IsNullOrWhiteSpace(palavraEscolhida) ||
-            palavraEscolhida.Length !=5 ||
-            !palavraEscolhida.All(c => char.IsLetter(c)))
-            {
-                Console.WriteLine("Digite uma palavra com 5 letras!");
-                continue;
-            }
-            palavraEscolhida = palavraEscolhida.ToUpper();
+        while (string.IsNullOrWhiteSpace(palavraEscolhida) ||
+        palavraEscolhida.Length !=5 ||
+        !palavraEscolhida.All(c => char.IsLetter(c)))
+        {
+            Console.Write("Digite uma palavra com 5 LETRAS:");
+            palavraEscolhida = Console.ReadLine();
+        }
+        palavraEscolhida = palavraEscolhida.ToUpper();
 
-            return palavraEscolhida;   
+        return palavraEscolhida;   
     }
     static void ImpressaoDasLetras(string palavraAleatoria, string palavraEscolhida)
     {
